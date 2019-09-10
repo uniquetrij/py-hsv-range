@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HSV Range Selector</title>
+
+</head>
+<body>
+
+<style>
+    .responsive {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<hr/>
+
+<table width="100%" align="center">
+    <tr>
+        <td>
+            <img src="/color_feed" class="responsive">
+        </td>
+
+        <td>
+            <img src="/mask_feed" class="responsive">
+        </td>
+
+        <td>
+            <img src="/filter_feed" class="responsive">
+        </td>
+    </tr>
+</table>
+
+<hr/>
+
+<table width="100%" align="center">
+    <tr>
+        <td>
+            <table align="center">
+                <tr>
+                    <td colspan="3">
+                        Lower HSV
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        H
+                    </td>
+                    <td>
+                        <input id="lht" type="text" value="30" readonly>
+                    </td>
+                    <td>
+                        <input id="lh" type="range" value="30" min="0" max="179" step="1" oninput="update()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        S
+                    </td>
+                    <td>
+                        <input id="lst" type="text" value="150" readonly>
+                    </td>
+                    <td>
+                        <input id="ls" type="range" value="150" min="0" max="255" step="1" oninput="update()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        V
+                    </td>
+                    <td>
+                        <input id="lvt" type="text" value="50" readonly>
+                    </td>
+                    <td>
+                        <input id="lv" type="range" value="50" min="0" max="255" step="1" oninput="update()">
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table align="center">
+                <tr>
+                    <td colspan="3">
+                        Upper HSV
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        H
+                    </td>
+                    <td>
+                        <input id="uht" type="text" value="255" readonly>
+                    </td>
+                    <td>
+                        <input id="uh" type="range" value="255" min="0" max="179" step="1" oninput="update()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        S
+                    </td>
+                    <td>
+                        <input id="ust" type="text" value="255" readonly>
+                    </td>
+                    <td>
+                        <input id="us" type="range" value="255" min="0" max="255" step="1" oninput="update()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        V
+                    </td>
+                    <td>
+                        <input id="uvt" type="text" value="180" readonly>
+                    </td>
+                    <td>
+                        <input id="uv" type="range" value="180" min="0" max="255" step="1" oninput="update()">
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+</table>
+
+<hr/>
+
+<script type="application/javascript">
+    function update() {
+        var uh = document.getElementById("uh").value;
+        var us = document.getElementById("us").value;
+        var uv = document.getElementById("uv").value;
+
+        var lh = document.getElementById("lh").value;
+        var ls = document.getElementById("ls").value;
+        var lv = document.getElementById("lv").value;
+
+        document.getElementById("uht").value = uh;
+        document.getElementById("ust").value = us;
+        document.getElementById("uvt").value = uv;
+
+        document.getElementById("lht").value = lh;
+        document.getElementById("lst").value = ls;
+        document.getElementById("lvt").value = lv;
+
+        var xhttp = new XMLHttpRequest();
+        var req = "uh=" + uh + "&"
+                 +"us=" + us + "&"
+                 +"uv=" + uv + "&"
+                 +"lh=" + lh + "&"
+                 +"ls=" + ls + "&"
+                 +"lv=" + lv + "";
+
+        xhttp.open("GET", "/update?"+req, true);
+        xhttp.send();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
